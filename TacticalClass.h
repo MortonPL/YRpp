@@ -132,6 +132,9 @@ public:
 		return { (int)temp.X,(int)temp.Y };
 	}
 
+	int RenderShroud2(RectangleStruct* pRect)
+		{ JMP_THIS(0x6D71E0); }
+
 public:
 	wchar_t ScreenText[64];
 	int EndGameGraphicsFrame;
