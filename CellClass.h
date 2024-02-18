@@ -5,6 +5,8 @@
 #pragma once
 
 #include <AbstractClass.h>
+#include <ScenarioClass.h>
+#include <TacticalClass.h>
 
 //forward declarations
 class ObjectClass;
@@ -83,6 +85,36 @@ public:
 	// misc
 	void SetWallOwner()
 		{ JMP_THIS(0x47D210); }
+
+	// Update the shroud and fog graphics for this cell.
+	char CellShadowUpdate(Point2D* pPoint, RectangleStruct* pRect)
+	{
+		char shroudFrame = this->GetShroudFrame(false);
+		this->DrawShroud(pPoint, pRect, shroudFrame);
+
+		char fogFrame = this->GetShroudFrame(true);
+		if (!ScenarioClass::Instance->SpecialFlags.FogOfWar || HouseClass::CurrentPlayer->Defeated)
+			return fogFrame;
+		this->DrawShroud(pPoint, pRect, fogFrame);
+
+		return fogFrame;
+	}
+
+	char GetShroudFrame(bool isFog)
+	{
+		char frame = TacticalClass::Instance->Cell_Shadow(this->MapCoords, isFog);
+		if (isFog)
+			this->Foggedness = frame;
+		else
+			this->Visibility = frame;
+
+		// Fully occluded.
+		if (frame == -2)
+			frame = 15;
+		// Fully visible.
+		else if (frame == -1)
+			frame = 0;
+	}
 
 	void IncreaseShroudCounter()
 		{ JMP_THIS(0x487690); }

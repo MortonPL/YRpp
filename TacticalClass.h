@@ -87,6 +87,9 @@ public:
 	Point2D* ApplyMatrix_Pixel(Point2D *coords, Point2D *offset)
 		{ JMP_THIS(0x6D2070); }
 
+	int RenderShroud2(RectangleStruct* pRect)
+		{ JMP_THIS(0x6D71E0); }
+
 public:
 
 	wchar_t ScreenText[64];

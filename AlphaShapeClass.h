@@ -36,6 +36,9 @@ public:
 		: AlphaShapeClass(noinit_t())
 	{ JMP_THIS(0x420960); }
 
+	static int Blit(Point2D* pPoint, RectangleStruct* pRect)
+		{ JMP_THIS(0x420F40); }
+
 protected:
 	explicit __forceinline AlphaShapeClass(noinit_t) noexcept
 		: AbstractClass(noinit_t())
