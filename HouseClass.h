@@ -719,6 +719,12 @@ public:
 	int CalculateCostMultipliers()
 		{ JMP_THIS(0x50BF60); }
 
+	double GetCountryCostMultiplier(const TechnoTypeClass* pType)
+		{JMP_THIS(0x50BDF0) }
+
+	double GetTypeCostMultiplier(const TechnoTypeClass* pType)
+		{ JMP_THIS(0x50BEB0); }
+
 	void ForceEnd()
 		{ JMP_THIS(0x4FCDC0); }
 
